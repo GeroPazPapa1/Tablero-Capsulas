@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="description"
+    content="Reporte semanal de intervenciones RED Cápsulas"
+  >
+
+  <title>RED Cápsulas — Resumen semanal</title>
+
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__content">
+      <div class="brand">
+        <span class="brand__icon">▥</span>
+        <span>RED</span>
+        <strong>Cápsulas</strong>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="page-header">
+      <div>
+        <p class="eyebrow">REPORTE SEMANAL</p>
+
+        <h1>Resumen de intervenciones</h1>
+
+        <p class="subtitle">
+          Intervenciones RED Cápsulas —
+          Martes 07/07 al Lunes 13/07/2026
+        </p>
+      </div>
+
+      <button
+        type="button"
+        class="print-button"
+        onclick="window.print()"
+      >
+        Imprimir
+      </button>
+    </section>
+
+    <section class="filters">
+      <label for="comunaSelect">Seleccionar comuna</label>
+
+      <select id="comunaSelect">
+        <option value="all">Resumen general</option>
+        <option value="1">Comuna 1</option>
+        <option value="2">Comuna 2</option>
+        <option value="3">Comuna 3</option>
+        <option value="4">Comuna 4</option>
+        <option value="5">Comuna 5</option>
+        <option value="6">Comuna 6</option>
+        <option value="7">Comuna 7</option>
+        <option value="8">Comuna 8</option>
+        <option value="9">Comuna 9</option>
+        <option value="10">Comuna 10</option>
+        <option value="11">Comuna 11</option>
+        <option value="12">Comuna 12</option>
+        <option value="13">Comuna 13</option>
+        <option value="14">Comuna 14</option>
+        <option value="15">Comuna 15</option>
+      </select>
+    </section>
+
+    <section class="kpi-grid">
+      <article class="card kpi-card">
+        <span class="kpi-label">Cartas totales</span>
+        <strong class="kpi-value" id="totalCartas">—</strong>
+      </article>
+
+      <article class="card kpi-card">
+        <span class="kpi-label">Promedio diario</span>
+        <strong class="kpi-value" id="promedioDiario">—</strong>
+      </article>
+
+      <article class="card kpi-card">
+        <span class="kpi-label">Cierre más frecuente</span>
+        <strong class="kpi-value kpi-value--small" id="cierreFrecuente">
+          —
+        </strong>
+      </article>
+
+      <article class="card kpi-card">
+        <span class="kpi-label">Turno con más intervenciones</span>
+        <strong class="kpi-value kpi-value--small" id="turnoFrecuente">
+          —
+        </strong>
+      </article>
+    </section>
+
+    <section class="dashboard-grid">
+      <article class="card chart-card">
+  <h2>Evolución diaria</h2>
+
+  <div id="listaDias" class="stats-list"></div>
+</article>
+
+      <article class="card chart-card">
+  <h2>Distribución por turno</h2>
+
+  <div id="listaTurnos" class="stats-list"></div>
+</article>
+
+      <article class="card chart-card">
+  <h2>Cierres y resoluciones</h2>
+
+  <div id="listaCierres" class="stats-list"></div>
+</article>
+
+      <article class="card chart-card">
+  <h2>Distribución por comuna</h2>
+
+  <div id="listaComunas" class="stats-list"></div>
+</article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    Dirección General Red de Atención
+  </footer>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
