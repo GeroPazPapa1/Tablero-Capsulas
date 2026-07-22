@@ -4,6 +4,7 @@ const RUTA_DATOS = "./data/capsulas.json";
 
 const elementos = {
   comunaSelect: document.querySelector("#comunaSelect"),
+  turnoSelect: document.querySelector("#turnoSelect"),
   totalCartas: document.querySelector("#totalCartas"),
   promedioDiario: document.querySelector("#promedioDiario"),
   cierreFrecuente: document.querySelector("#cierreFrecuente"),
@@ -194,6 +195,29 @@ function filtrarPorComuna(registros, comunaSeleccionada) {
   );
 }
 
+function normalizarTurno(valor) {
+  return limpiarTexto(valor)
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "");
+}
+
+function filtrarPorTurno(registros, turnoSeleccionado) {
+  if (turnoSeleccionado === "all") {
+    return registros;
+  }
+
+  const turnoBuscado = normalizarTurno(
+    turnoSeleccionado,
+  );
+
+  return registros.filter(
+    (registro) =>
+      normalizarTurno(registro.turno) ===
+      turnoBuscado,
+  );
+}
+
 /**
  * Calcula los KPI del conjunto filtrado.
  */
@@ -256,11 +280,20 @@ function renderizarIndicadores(registros) {
  * Actualiza todo el dashboard según la selección actual.
  */
 function actualizarDashboard() {
-  const comunaSeleccionada = elementos.comunaSelect.value;
+  const comunaSeleccionada =
+    elementos.comunaSelect.value;
 
-  const registrosFiltrados = filtrarPorComuna(
+  const turnoSeleccionado =
+    elementos.turnoSelect.value;
+
+  const registrosPorComuna = filtrarPorComuna(
     registrosOriginales,
     comunaSeleccionada,
+  );
+
+  const registrosFiltrados = filtrarPorTurno(
+    registrosPorComuna,
+    turnoSeleccionado,
   );
 
   renderizarIndicadores(registrosFiltrados);
@@ -268,10 +301,14 @@ function actualizarDashboard() {
   renderizarTurnos(registrosFiltrados);
   renderizarComunas(registrosFiltrados);
   renderizarDias(registrosFiltrados);
-  
+
   console.log({
     comunaSeleccionada,
-    registrosMostrados: registrosFiltrados.length,
+    turnoSeleccionado,
+    registrosPorComuna:
+      registrosPorComuna.length,
+    registrosMostrados:
+      registrosFiltrados.length,
   });
 }
 
@@ -541,6 +578,11 @@ function mostrarError(error) {
  */
 async function iniciarDashboard() {
   elementos.comunaSelect.addEventListener(
+    "change",
+    actualizarDashboard,
+  );
+
+  elementos.turnoSelect.addEventListener(
     "change",
     actualizarDashboard,
   );
