@@ -10,8 +10,8 @@ BASE_DIR = Path(__file__).resolve().parent
 EXCEL_PATH = BASE_DIR / "capsulas.xlsx"
 JSON_PATH = BASE_DIR / "data" / "capsulas.json"
 
-FECHA_DESDE = pd.Timestamp("2026-08-11 00:00:00")
-FECHA_HASTA = pd.Timestamp("2026-08-17 23:59:59")
+FECHA_DESDE = pd.Timestamp("2026-08-04 00:00:00")
+FECHA_HASTA = pd.Timestamp("2026-08-10 23:59:59")
 
 
 def limpiar_texto(valor: object) -> str:
